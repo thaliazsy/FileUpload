@@ -81,3 +81,29 @@ void MainWindow::on_selectBtn_clicked()
 
 }
 
+void MainWindow::on_uploadFileBtn_clicked()
+{
+    //ftp://user4@203.64.84.150:20221/DocumentReference
+
+    foreach(QString f, fileNames){
+
+        QFileInfo file (f);
+        QUrl url(ui->ftpEdit->text() + "/" + file.fileName());
+        url.setUserName("user4");    // Set login
+        url.setPassword("4efb@plkj"); // Set пароль
+        url.setPort(20221);
+
+
+        myFile = new QFile(f);
+        // Start upload
+        QNetworkReply *reply = m_manager.put(QNetworkRequest(url), myFile);
+        // And connect to the progress upload signal
+        connect(reply, &QNetworkReply::uploadProgress, this, &MainWindow::uploadProgress);
+    }
+}
+
+void MainWindow::uploadProgress(qint64 bytesSent, qint64 bytesTotal)
+{
+    // Display the progress of the upload
+    //ui->progressBar->setValue(100 * bytesSent/bytesTotal);
+}

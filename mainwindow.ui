@@ -93,7 +93,7 @@
       <item>
        <widget class="QLineEdit" name="ftpEdit">
         <property name="text">
-         <string/>
+         <string>ftp://user4@203.64.84.150:20221/DocumentReference</string>
         </property>
        </widget>
       </item>
