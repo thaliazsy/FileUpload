@@ -34,10 +34,7 @@ void MainWindow::finished(QNetworkReply * reply)
     ui -> textEdit -> append(type);
 
     QString result = QString(reply -> readAll());
-    QJsonParseError error;
-    QJsonDocument json = QJsonDocument::fromJson(result.toUtf8(), & error);
-    if (error.error == QJsonParseError::NoError && json.isObject()) {
-    }
+    ui->textEdit_result -> append(result);
     ui->selectBtn->setEnabled(true);
 }
 
